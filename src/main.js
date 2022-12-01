@@ -75,7 +75,27 @@ const cardNumberPattern = {
 
 const cardNumberMasked = IMask(cardNumber, cardNumberPattern);
 
-const addButton = document.querySelector("add-card");
-addButton.addEventListener("click", function() {
-  console.log('clicou')
+document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault()
 });
+
+function updateCCName(name) {
+  const ccHolder = document.querySelector(".cc-holder .value")
+  ccHolder.innerText = name.length === 0 ? 'FULANO DA SILVA' : name
+
+}
+
+function updateSecurityCode(code) {
+  const ccSecurity = document.querySelector(".cc-security .value")
+  ccSecurity.innerText = code.length === 0 ? "123" : code
+}
+
+const cardHolder = document.querySelector("#card-holder");
+cardHolder.addEventListener("input", () => {
+  updateCCName(cardHolder.value)
+});
+
+securityCodeMasked.on("accept", () => {
+  updateSecurityCode(securityCodeMasked.value)
+})
+
